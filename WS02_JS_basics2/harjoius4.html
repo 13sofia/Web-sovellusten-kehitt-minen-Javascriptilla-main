@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Opiskelijatervetuloa</title>
+</head>
+<body>
+
+<script>
+    // Kysytään, onko käyttäjä opiskelija
+    let onOpiskelija = confirm("Oletko opiskelija?");
+
+    if (onOpiskelija) {
+        // Bonus: kysytään käyttäjän nimi
+        let nimi = prompt("Mikä on nimesi?");
+        if (nimi) {
+            document.write("Tervetuloa, " + nimi + "!");
+        } else {
+            document.write("Tervetuloa opiskelija!");
+        }
+    } else {
+        document.write("Valitettavasti tämä sivu on tarkoitettu vain opiskelijoille");
+    }
+</script>
+
+</body>
+</html>
