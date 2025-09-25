@@ -1,27 +1,8 @@
-function showAlert() {
-    alert("Klikkasit minua!");
-}
-
+// Apu-funktio, joka luo ja näyttää HTML-taulukon
 function showTable() {
-    const tableContainer = document.getElementById("table-container");
-
+    const tableContainer = document.getElementById("taulukonPaikka");
     const tableHTML = `
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>Nimi</th>
@@ -30,180 +11,135 @@ function showTable() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>$320,800</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>$170,750</td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>$86,000</td>
-                </tr>
-                <tr>
-                    <td>Cedric Kelly</td>
-                    <td>Senior Javascript Developer</td>
-                    <td>$433,060</td>
-                </tr>
-                <tr>
-                    <td>Airi Satou</td>
-                    <td>Accountant</td>
-                    <td>$162,700</td>
-                </tr>
+                <tr><td>Tiger Nixon</td><td>System Architect</td><td>$320,800</td></tr>
+                <tr><td>Garrett Winters</td><td>Accountant</td><td>$170,750</td></tr>
+                <tr><td>Ashton Cox</td><td>Junior Technical Author</td><td>$86,000</td></tr>
+                <tr><td>Cedric Kelly</td><td>Senior Javascript Developer</td><td>$433,060</td></tr>
+                <tr><td>Airi Satou</td><td>Accountant</td><td>$162,700</td></tr>
             </tbody>
         </table>
     `;
-
     tableContainer.innerHTML = tableHTML;
 }
 
+// Odottaa DOM-puun latautumista ennen kuin skriptiä ajetaan
 document.addEventListener('DOMContentLoaded', () => {
-    // Tässä on esimerkki, miten koodi yhdistetään HTML:ään.
-    // Oletetaan, että HTML-tiedostossa on seuraavat elementit:
-    // <button id="alertButton">Napsauta minua</button>
-    // <button id="tableButton">Näytä taulukko</button>
-    // <div id="table-container"></div>
+
+    // --- Harjoitus 1 ---
+    const buttons = document.querySelectorAll('p button');
+    const alertBtn = buttons[0];
+    const showTableBtn = buttons[1];
     
-    // const alertButton = document.getElementById('alertButton');
-    // const tableButton = document.getElementById('tableButton');
-
-    // if (alertButton) {
-    //     alertButton.addEventListener('click', showAlert);
-    // }
-
-    // if (tableButton) {
-    //     tableButton.addEventListener('click', showTable);
-    // }
-});
-// Harjoitus 2: onMouseOver-tapahtuma otsikkoon "Harjoitus 2"
-
-// Etsi otsikko (oletetaan id:n olevan 'harjoitus2-otsikko')
-const harjoitus2Otsikko = document.getElementById('harjoitus2-otsikko');
-
-// Lisää onmouseover-tapahtuma
-if (harjoitus2Otsikko) {
-    harjoitus2Otsikko.onmouseover = function() {
-        console.log("Stepped over my a mouse!");
-    };
-}
-
-// Harjoitus 1: addEventListener()-tapahtuma otsikkoon "Exercise 1"
-
-// Etsi otsikko käyttäen querySelectoria (oletetaan luokan olevan 'harjoitus1-otsikko')
-const harjoitus1Otsikko = document.querySelector('.harjoitus1-otsikko');
-
-// Lisää click-tapahtumankäsittelijä
-if (harjoitus1Otsikko) {
-    harjoitus1Otsikko.addEventListener('click', function() {
-        // Muuta otsikon väri punaiseksi
-        this.style.color = 'red';
-        
-        // Vaihda otsikon sisältö
-        this.innerHTML = "Bye bye mouse!";
-    });
-}
-// Harjoitus 3 - Lomakekäytännöt
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Etsi tarvittavat elementit
-    const textarea = document.getElementById('tekstialue');
-    const charCounter = document.getElementById('charcount');
-    const lahetaButton = document.getElementById('laheta');
-    const lomake = document.getElementById('yksinkertainen-lomake');
-
-    // 1. Lisää onfocus-tapahtuma tekstialueeseen
-    if (textarea) {
-        textarea.onfocus = function() {
-            console.log("Please fill in the form with proper data.");
-            // Valinnainen: taustavärin muuttaminen
-            this.style.backgroundColor = '#f0f0f0';
-        };
-
-        // Valinnainen: onblur-tapahtuma palauttamaan taustavärin
-        textarea.onblur = function() {
-            this.style.backgroundColor = '';
-        };
-    }
-
-    // 2. Lisää onkeydown-tapahtuma, joka laskee merkkimäärän
-    if (textarea && charCounter) {
-        textarea.onkeydown = function() {
-            // Päivitä merkkimäärä jokaisella näppäinpainalluksella
-            charCounter.textContent = `${this.value.length + 1}/200`;
-        };
-    }
-
-    // 3. Validoi lomake painikkeen klikkauksella
-    if (lahetaButton && textarea) {
-        lahetaButton.onclick = function() {
-            if (textarea.value.trim() === "") {
-                alert("Tekstikenttä ei voi olla tyhjä. Ole hyvä ja kirjoita tekstiä.");
-            } else {
-                alert("Lomake lähetetty onnistuneesti!");
-                // Tässä voit lisätä toiminnon lomakkeen lähettämiseksi
-            }
-        };
-    }
-
-    // Bonus: Haaste - Vaihtoehtoinen merkkimäärän laskuri ja lähetä-painikkeen hallinta
-
-    // Etsi elementit
-    const bonusTextarea = document.getElementById('tekstialue_bonus');
-    const bonusCharCounter = document.getElementById('charcount_bonus');
-    const bonusLahetaButton = document.getElementById('laheta_bonus');
-
-    if (bonusTextarea && bonusCharCounter && bonusLahetaButton) {
-        // Alusta lähetä-painike deaktivoituna
-        bonusLahetaButton.disabled = true;
-
-        bonusTextarea.addEventListener('input', () => {
-            const currentLength = bonusTextarea.value.length;
-            
-            // Päivitä merkkimäärä
-            bonusCharCounter.textContent = `${currentLength}/200`;
-
-            // Muuta merkkimäärän väriä, jos teksti on liian pitkä
-            if (currentLength > 200) {
-                bonusCharCounter.style.color = 'red';
-            } else {
-                bonusCharCounter.style.color = 'black';
-            }
-
-            // Aktivoi/deaktivoi lähetä-painike
-            if (currentLength === 0 || currentLength > 200) {
-                bonusLahetaButton.disabled = true;
-            } else {
-                bonusLahetaButton.disabled = false;
-            }
+    if (alertBtn) {
+        alertBtn.addEventListener('click', () => {
+            alert("Klikkasit minua!");
         });
     }
 
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // Etsi tarvittavat elementit niiden ID:n perusteella
-    const divElement = document.getElementById('liikuteltava-div');
-    const koordinaattiElementti = document.getElementById('coordinates');
+    if (showTableBtn) {
+        showTableBtn.addEventListener('click', showTable);
+    }
 
-    // Lisää onMouseMove-tapahtumakäsittelijä DIV-elementtiin
-    if (divElement) {
-        divElement.onmousemove = function(event) {
-            // Ota hiiren X- ja Y-koordinaatit tapahtumaobjektista
+    // --- Harjoitus 2 ---
+    // HUOM: otsikoillasi ei ole ID:tä, joten ne etsitään järjestyksessä
+    const harjoitus2Otsikko = document.querySelector('h2:nth-of-type(2)');
+    const exercise1Otsikko = document.querySelector('h2:nth-of-type(1)');
+
+    if (harjoitus2Otsikko) {
+        harjoitus2Otsikko.addEventListener('mouseover', () => {
+            console.log("Stepped over my a mouse!");
+        });
+    }
+
+    if (exercise1Otsikko) {
+        exercise1Otsikko.addEventListener('click', function() {
+            this.style.color = 'red';
+            this.innerHTML = "Bye bye mouse!";
+        });
+    }
+
+    // --- Harjoitus 3 ---
+    const textarea = document.getElementById('textdata');
+    const charcount = document.getElementById('charcount');
+    const formButton = document.querySelector('form button');
+
+    if (textarea) {
+        textarea.addEventListener('focus', () => {
+            console.log("Please fill in the form with proper data.");
+            textarea.style.backgroundColor = '#f0f0f0';
+        });
+
+        textarea.addEventListener('blur', () => {
+            textarea.style.backgroundColor = '';
+        });
+
+        // onkeydown ja bonus-tehtävä (merkkimäärä ja painikkeen tila)
+        textarea.addEventListener('input', () => {
+            const charCount = textarea.value.length;
+            if (charcount) {
+                charcount.textContent = `${charCount}/200`;
+                charcount.style.color = charCount > 200 ? 'red' : 'black';
+            }
+            if (formButton) {
+                formButton.disabled = charCount === 0 || charCount > 200;
+            }
+        });
+
+        // Lomakkeen validointi
+        if (formButton) {
+            formButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (textarea.value.trim() === "") {
+                    alert("Tekstikenttä ei voi olla tyhjä. Ole hyvä ja kirjoita tekstiä.");
+                } else {
+                    alert("Lomake lähetetty onnistuneesti!");
+                }
+            });
+        }
+    }
+
+    // --- Harjoitus 4 ---
+    const coordinatesDiv = document.getElementById('coordinates');
+    
+    if (coordinatesDiv) {
+        // Tämän DIVin sisälle pitäisi olla hiirellä liikuteltava alue
+        // Asetetaan sille koko
+        coordinatesDiv.style.width = '200px';
+        coordinatesDiv.style.height = '200px';
+        coordinatesDiv.style.border = '1px solid black';
+
+        coordinatesDiv.addEventListener('mousemove', (event) => {
             const x = event.clientX;
             const y = event.clientY;
-
-            // Tulosta koordinaatit konsoliin
             console.log(`Hiiren koordinaatit: X=${x}, Y=${y}`);
+            
+            coordinatesDiv.innerHTML = `X: ${x}, Y: ${y}`;
+        });
+    }
 
-            // Jos koordinaatti-elementti on olemassa, päivitä sen sisältö
-            if (koordinaattiElementti) {
-                koordinaattiElementti.innerHTML = `X: ${x}, Y: ${y}`;
+    // --- Bonus-tehtävä (sijainti) ---
+    const sijaintiBtn = document.getElementById('sijaintiBtn');
+    
+    if (sijaintiBtn) {
+        sijaintiBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        console.log(`Sijainti: Lat: ${lat}, Lon: ${lon}`);
+
+                        // Avaa Google Maps uudessa välilehdessä
+                        window.open(`https://www.google.com/maps/@${lat},${lon},15z`, '_blank');
+                    },
+                    (error) => {
+                        console.error('Sijainnin hakeminen epäonnistui:', error);
+                        alert('Sijaintia ei voitu hakea. Varmista, että olet sallinut sijaintipalvelut.');
+                    }
+                );
+            } else {
+                alert('Selaimesi ei tue Geolocation API:a.');
             }
-        };
+        });
     }
 });
